@@ -1,10 +1,9 @@
 import json
 import sys
 from pathlib import Path
-
+from PyQt6.QtWidgets import QStackedLayout
 import requests
 import vlc
-from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import (
     QApplication,
@@ -13,10 +12,11 @@ from PyQt6.QtWidgets import (
     QLabel,
     QPushButton,
     QScrollArea,
+    QSlider,
     QVBoxLayout,
     QWidget,
 )
-
+from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 VIDEO_PATH = BASE_DIR / "reproductor" / "malditos-baja.mp4"
@@ -48,7 +48,7 @@ class Reproductor(QWidget):
         self.video_frame.setMouseTracking(True)
 
         self.xray_panel = QWidget()
-        self.xray_panel.setFixedWidth(280)
+        self.xray_panel.setFixedWidth(360)
         self.xray_layout = QVBoxLayout()
         self.xray_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.xray_panel.setLayout(self.xray_layout)
@@ -63,35 +63,117 @@ class Reproductor(QWidget):
             }
         """)
 
-        self.btn_play = QPushButton("Reproducir")
-        self.btn_pause = QPushButton("Pausar")
-        self.btn_stop = QPushButton("Detener")
-        self.btn_back = QPushButton("-10s")
-        self.btn_forward = QPushButton("+10s")
-        self.btn_xray = QPushButton("Ocultar X-Ray")
-        self.btn_full = QPushButton("Pantalla completa")
+        self.btn_back = QPushButton("⏪")
+
+        self.btn_play = QPushButton("▶")
+
+        self.btn_pause = QPushButton("⏸")
+
+        self.btn_forward = QPushButton("⏩")
+
+        self.btn_stop = QPushButton("⏹")
+
+        self.btn_xray = QPushButton("X-Ray")
+        self.btn_xray.setMinimumWidth(90)
+        self.btn_xray.setMaximumWidth(90)
+
+        self.btn_full = QPushButton("⛶")
+        self.btn_full.setMinimumWidth(50)
+        self.btn_full.setMaximumWidth(50)
+        self.progress = QSlider(Qt.Orientation.Horizontal)
+
+        self.progress.setMinimum(0)
+        self.progress.setMaximum(1000)
+
+        self.lbl_time = QLabel("00:00")
+
+        self.lbl_duration = QLabel("00:00")
+
+        self.progress.sliderReleased.connect(self.slider_changed)
 
         self.controls_widget = QWidget()
+
+        self.controls_widget.setStyleSheet("""
+        QWidget{
+            background:rgba(10,10,10,140);
+            border-radius:14px;
+            border:1px solid rgba(255,255,255,25);
+        }
+        """)
+        self.animation = QPropertyAnimation(self.controls_widget, b"windowOpacity")
+
+        self.animation.setDuration(180)
+        self.animation.finished.connect(self.on_animation_finished)
+
+        
         controls = QHBoxLayout()
-        controls.setContentsMargins(0, 0, 0, 0)
-        controls.addWidget(self.btn_play)
-        controls.addWidget(self.btn_pause)
-        controls.addWidget(self.btn_stop)
+
+        controls.setContentsMargins(15,6,15,6)
+
+        controls.setSpacing(6)
+
         controls.addWidget(self.btn_back)
+
+        controls.addWidget(self.btn_play)
+
+        controls.addWidget(self.btn_pause)
+
         controls.addWidget(self.btn_forward)
+
+        controls.addWidget(self.btn_stop)
+
+        controls.addSpacing(15)
+
+        controls.addWidget(self.lbl_time)
+
+        controls.addWidget(self.progress,1)
+
+        controls.addWidget(self.lbl_duration)
+
+        controls.addSpacing(15)
+
         controls.addWidget(self.btn_xray)
+
         controls.addWidget(self.btn_full)
+
         self.controls_widget.setLayout(controls)
 
+        # Contenedor del vídeo
+        self.video_container = QWidget()
+
+        self.video_container.setStyleSheet("""
+        background:black;
+        """)
+
+        video_layout = QVBoxLayout(self.video_container)
+
+        video_layout.setContentsMargins(0, 0, 0, 0)
+
+        video_layout.setSpacing(0)
+
+        video_layout.addWidget(self.video_frame, 1)
+        overlay = QVBoxLayout()
+
+        overlay.setContentsMargins(20, 20, 20, 20)
+
+        overlay.addStretch()
+
+        overlay.addWidget(self.controls_widget)
         main_area = QHBoxLayout()
-        main_area.addWidget(self.video_frame, 1)
+
+        main_area.setContentsMargins(0, 0, 0, 0)
+
+        main_area.setSpacing(0)
+
+        main_area.addWidget(self.video_container, 1)
+
         main_area.addWidget(self.scroll)
 
-        layout = QVBoxLayout()
-        layout.addLayout(main_area, 1)
-        layout.addWidget(self.controls_widget)
-        self.setLayout(layout)
+        self.setLayout(main_area)
+        video_layout.addLayout(overlay)
 
+
+        
         self.btn_play.clicked.connect(self.play_video)
         self.btn_pause.clicked.connect(self.pause_video)
         self.btn_stop.clicked.connect(self.stop_video)
@@ -102,14 +184,86 @@ class Reproductor(QWidget):
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.actualizar_xray)
-        self.timer.start(500)
+        self.timer.start(100)
 
         self.hide_controls_timer = QTimer(self)
         self.hide_controls_timer.setSingleShot(True)
         self.hide_controls_timer.timeout.connect(self.ocultar_controles)
 
         self.mostrar_actores([])
+        self.setStyleSheet("""
 
+        QPushButton{
+
+        background:rgba(70,70,70,180);
+
+        color:white;
+
+        border:none;
+
+        border-radius:18px;
+
+        font-size:18px;
+                           
+        font-weight:bold;
+                           
+        min-width:32px;
+
+        max-width:32px;
+
+        min-height:32px;
+
+        max-height:32px;
+
+        }
+
+        QPushButton:hover{
+
+        background:#707070;
+
+        }
+
+        QSlider::groove:horizontal{
+
+        height:6px;
+
+        background:#404040;
+
+        border-radius:3px;
+        }
+
+        QSlider::sub-page:horizontal{
+
+        background:#ff3030;
+
+        border-radius:3px;
+        }
+
+        QSlider::handle:horizontal{
+
+        background:white;
+
+        width:16px;
+
+        height:16px;
+
+        margin:-6px 0;
+
+        border-radius:8px;
+        }
+
+        QLabel{
+
+        color:white;
+
+        }
+
+        """)
+    def on_animation_finished(self):
+
+        if not self.controls_visible:
+
+            self.controls_widget.hide()
     def cargar_xray(self, json_path):
         if not json_path.exists():
             return {"timeline": []}
@@ -158,7 +312,31 @@ class Reproductor(QWidget):
         self.player.set_time(int(target_ms))
         self.current_actor_key = None
         self.actualizar_xray()
+    def slider_changed(self):
 
+        duration=self.player.get_length()
+
+        if duration<=0:
+
+            return
+
+        value=self.progress.value()/1000
+
+        self.player.set_time(int(duration*value))
+    def ms_to_time(self, ms):
+        if ms < 0:
+            ms = 0
+
+        total = ms // 1000
+
+        horas = total // 3600
+        minutos = (total % 3600) // 60
+        segundos = total % 60
+
+        if horas > 0:
+            return f"{horas:02}:{minutos:02}:{segundos:02}"
+
+        return f"{minutos:02}:{segundos:02}"
     def toggle_xray(self):
         if self.scroll.isVisible():
             self.scroll.hide()
@@ -178,17 +356,45 @@ class Reproductor(QWidget):
             self.mostrar_controles()
 
     def mostrar_controles(self):
+
+        if self.controls_visible:
+
+            self.hide_controls_timer.start(2500)
+
+            return
+
         self.controls_visible = True
+
         self.controls_widget.show()
+
+        self.animation.stop()
+
+        self.animation.setStartValue(0)
+
+        self.animation.setEndValue(1)
+
+        self.animation.start()
+
         self.hide_controls_timer.start(2500)
 
     def ocultar_controles(self):
+
         if self.underMouse():
+
             self.hide_controls_timer.start(1200)
+
             return
 
         self.controls_visible = False
-        self.controls_widget.hide()
+
+        self.animation.stop()
+
+        self.animation.setStartValue(1)
+
+        self.animation.setEndValue(0)
+
+        self.animation.start()
+
 
     def mouseMoveEvent(self, event):
         self.mostrar_controles()
@@ -226,14 +432,42 @@ class Reproductor(QWidget):
         return []
 
     def actualizar_xray(self):
+
         current_ms = self.player.get_time()
+
         if current_ms < 0:
             return
 
+        duration = self.player.get_length()
+
+        if duration > 0:
+
+            self.progress.blockSignals(True)
+
+            value = int((current_ms / duration) * 1000)
+
+            self.progress.setValue(value)
+
+            self.progress.blockSignals(False)
+
+            self.lbl_time.setText(
+                self.ms_to_time(current_ms)
+            )
+
+            self.lbl_duration.setText(
+                self.ms_to_time(duration)
+            )
+
         segundo = current_ms / 1000
+
         actors = self.actores_en_segundo(segundo)
+
         actor_key = tuple(
-            (actor.get("tmdb_id"), actor.get("name"), actor.get("score"))
+            (
+                actor.get("tmdb_id"),
+                actor.get("name"),
+                actor.get("score")
+            )
             for actor in actors
         )
 
@@ -241,8 +475,8 @@ class Reproductor(QWidget):
             return
 
         self.current_actor_key = actor_key
-        self.mostrar_actores(actors)
 
+        self.mostrar_actores(actors)
     def limpiar_xray(self):
         while self.xray_layout.count():
             item = self.xray_layout.takeAt(0)
@@ -298,19 +532,32 @@ class Reproductor(QWidget):
     def crear_actor_card(self, actor):
         card = QWidget()
         card.setStyleSheet("""
-            QWidget {
-                background-color: #222;
-                border-radius: 6px;
-            }
+        QWidget{
+
+        background:#252525;
+
+        border-radius:14px;
+
+        border:1px solid #3a3a3a;
+
+        }
+
+        QWidget:hover{
+
+        background:#303030;
+
+        border:1px solid #555;
+
+        }
         """)
 
         layout = QHBoxLayout()
         layout.setContentsMargins(8, 8, 8, 8)
-        layout.setSpacing(10)
+        layout.setSpacing(14)
         card.setLayout(layout)
 
         image = QLabel()
-        image.setFixedSize(72, 96)
+        image.setFixedSize(96, 128)
         image.setAlignment(Qt.AlignmentFlag.AlignCenter)
         image.setStyleSheet("background-color: #333; color: #aaa;")
 
@@ -318,8 +565,8 @@ class Reproductor(QWidget):
         if pixmap is not None:
             image.setPixmap(
                 pixmap.scaled(
-                    72,
                     96,
+                    128,
                     Qt.AspectRatioMode.KeepAspectRatioByExpanding,
                     Qt.TransformationMode.SmoothTransformation
                 )
