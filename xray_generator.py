@@ -13,7 +13,7 @@ class XRayGenerator:
         tmdb_client,
         frame_samples_per_second=4,
         interval_seconds=10,
-        threshold=0.64,
+        threshold=0.65,
         high_confidence_threshold=0.78,
         min_detections=2,
         max_actors=30,
