@@ -1,8 +1,6 @@
 from datetime import datetime, timezone
-
 import cv2
 import numpy as np
-
 from deepface import DeepFace
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -23,7 +21,8 @@ class XRayGenerator:
         model_name="Facenet512",
         detector_backend="mtcnn",
         recognition_image_size="w342",
-        xray_image_size="w185"
+        xray_image_size="w185",
+        progress_callback=None
     ):
         self.tmdb = tmdb_client
         self.frame_samples_per_second = frame_samples_per_second
@@ -39,10 +38,14 @@ class XRayGenerator:
         self.detector_backend = detector_backend
         self.recognition_image_size = recognition_image_size
         self.xray_image_size = xray_image_size
-
+        self.progress_callback = progress_callback
         self.embeddings_db = []
         self.labels_db = []
         self.actors_db = {}
+        
+    def actualizar_progreso(self, porcentaje):
+        if self.progress_callback:
+            self.progress_callback(porcentaje)
 
     def generate(self, video_path, movie_query=None, movie_id=None):
         movie = (
@@ -219,6 +222,7 @@ class XRayGenerator:
         if fps is None or fps == 0:
             fps = 25
 
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         print(f"\nFPS: {fps}")
 
         step_frame = max(1, int(fps / self.frame_samples_per_second))
@@ -233,6 +237,10 @@ class XRayGenerator:
         print(f"Procesando cada {step_frame} frames")
 
         while True:
+
+            porcentaje = int((frame_id / total_frames) * 100)
+            self.actualizar_progreso(min(porcentaje, 99))
+
             ret, frame = cap.read()
             if not ret:
                 break
@@ -267,6 +275,7 @@ class XRayGenerator:
             self.save_interval(results, interval_start, duration_seconds, temp_actors)
 
         cap.release()
+        self.actualizar_progreso(100)
         return results
 
     def create_xray_json(self, movie, timeline):

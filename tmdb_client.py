@@ -1,5 +1,4 @@
 import os
-
 import cv2
 import numpy as np
 import requests
@@ -175,3 +174,12 @@ class TMDbClient:
             "original_title": movie.get("original_title"),
             "year": (movie.get("release_date") or "")[:4] or None
         }
+    def buscar_peliculas(self, query):
+        data = self.get(
+            "/search/movie",
+            {"query": query, "language": self.language}
+        )
+
+        results = data.get("results", [])
+
+        return [self._format_movie(movie) for movie in results]

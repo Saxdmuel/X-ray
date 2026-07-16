@@ -1,1 +1,14 @@
+# Vídeo de pruebas
 reproductor/malditos-baja.mp4
+
+# Caché de Python
+__pycache__/
+*.pyc
+
+# Entornos virtuales
+.venv/
+venv/
+
+# Variables de entorno (API de TMDb)
+.env
+.vscode/settings.json

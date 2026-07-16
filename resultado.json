@@ -7,7 +7,7 @@
     },
     "source": {
         "provider": "TMDb",
-        "generated_at": "2026-07-09T01:11:10.294655+00:00"
+        "generated_at": "2026-07-16T17:10:30.748302+00:00"
     },
     "settings": {
         "frame_samples_per_second": 8,
@@ -34,7 +34,7 @@
                     "detections": 20,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 },
                 {
@@ -111,7 +111,7 @@
                     "detections": 12,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 }
             ]
@@ -125,10 +125,10 @@
                     "name": "Christoph Waltz",
                     "character": "COL. Hans Landa",
                     "score": 0.708,
-                    "detections": 12,
+                    "detections": 13,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 }
             ]
@@ -231,7 +231,7 @@
                     "tmdb_id": 16847,
                     "name": "Eli Roth",
                     "character": "SGT. Donny Donowitz",
-                    "score": 0.81,
+                    "score": 0.8101,
                     "detections": 3,
                     "image_url": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg",
                     "reference_images": 9,
@@ -271,10 +271,10 @@
                     "name": "Christoph Waltz",
                     "character": "COL. Hans Landa",
                     "score": 0.6785,
-                    "detections": 5,
+                    "detections": 6,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 },
                 {
@@ -309,11 +309,11 @@
                     "tmdb_id": 27319,
                     "name": "Christoph Waltz",
                     "character": "COL. Hans Landa",
-                    "score": 0.7125,
-                    "detections": 5,
+                    "score": 0.7379,
+                    "detections": 6,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 }
             ]
@@ -330,7 +330,7 @@
                     "detections": 78,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 }
             ]
@@ -347,7 +347,7 @@
                     "detections": 12,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 }
             ]
@@ -360,11 +360,11 @@
                     "tmdb_id": 27319,
                     "name": "Christoph Waltz",
                     "character": "COL. Hans Landa",
-                    "score": 0.6956,
+                    "score": 0.7348,
                     "detections": 3,
                     "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
                     "reference_images": 18,
-                    "reference_embeddings": 33,
+                    "reference_embeddings": 32,
                     "reference_quality": "high"
                 }
             ]
