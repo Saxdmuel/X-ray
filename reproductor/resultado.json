@@ -1,0 +1,373 @@
+{
+    "movie": {
+        "tmdb_id": 16869,
+        "title": "Malditos bastardos",
+        "original_title": "Inglourious Basterds",
+        "year": "2009"
+    },
+    "source": {
+        "provider": "TMDb",
+        "generated_at": "2026-07-09T01:11:10.294655+00:00"
+    },
+    "settings": {
+        "frame_samples_per_second": 8,
+        "interval_seconds": 10,
+        "threshold": 0.64,
+        "high_confidence_threshold": 0.78,
+        "min_detections": 2,
+        "images_per_actor": 10,
+        "tagged_images_per_actor": 8,
+        "use_tagged_images": true,
+        "model": "Facenet512",
+        "detector": "mtcnn"
+    },
+    "timeline": [
+        {
+            "start": 0,
+            "end": 10,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.7072,
+                    "detections": 20,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                },
+                {
+                    "tmdb_id": 6091,
+                    "name": "August Diehl",
+                    "character": "Major Hellstrom",
+                    "score": 0.7845,
+                    "detections": 3,
+                    "image_url": "https://image.tmdb.org/t/p/w185/y8rg0tEHhqZr9Z6CExe686ytKF9.jpg",
+                    "reference_images": 7,
+                    "reference_embeddings": 7,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 10,
+            "end": 20,
+            "actors": []
+        },
+        {
+            "start": 20,
+            "end": 30,
+            "actors": []
+        },
+        {
+            "start": 30,
+            "end": 40,
+            "actors": [
+                {
+                    "tmdb_id": 16847,
+                    "name": "Eli Roth",
+                    "character": "SGT. Donny Donowitz",
+                    "score": 0.8122,
+                    "detections": 3,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg",
+                    "reference_images": 9,
+                    "reference_embeddings": 20,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 40,
+            "end": 50,
+            "actors": [
+                {
+                    "tmdb_id": 16847,
+                    "name": "Eli Roth",
+                    "character": "SGT. Donny Donowitz",
+                    "score": 0.7874,
+                    "detections": 6,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg",
+                    "reference_images": 9,
+                    "reference_embeddings": 20,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 50,
+            "end": 60,
+            "actors": []
+        },
+        {
+            "start": 60,
+            "end": 70,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.7161,
+                    "detections": 12,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 70,
+            "end": 80,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.708,
+                    "detections": 12,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 80,
+            "end": 90,
+            "actors": [
+                {
+                    "tmdb_id": 107770,
+                    "name": "B.J. Novak",
+                    "character": "PFC. Smithson Utivich",
+                    "score": 0.8214,
+                    "detections": 1,
+                    "image_url": "https://image.tmdb.org/t/p/w185/o8Xf1khxhKGTz3QAplXD35opRA8.jpg",
+                    "reference_images": 4,
+                    "reference_embeddings": 10,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 90,
+            "end": 100,
+            "actors": []
+        },
+        {
+            "start": 100,
+            "end": 110,
+            "actors": [
+                {
+                    "tmdb_id": 107770,
+                    "name": "B.J. Novak",
+                    "character": "PFC. Smithson Utivich",
+                    "score": 0.8975,
+                    "detections": 1,
+                    "image_url": "https://image.tmdb.org/t/p/w185/o8Xf1khxhKGTz3QAplXD35opRA8.jpg",
+                    "reference_images": 4,
+                    "reference_embeddings": 10,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 110,
+            "end": 120,
+            "actors": [
+                {
+                    "tmdb_id": 16847,
+                    "name": "Eli Roth",
+                    "character": "SGT. Donny Donowitz",
+                    "score": 0.7573,
+                    "detections": 2,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg",
+                    "reference_images": 9,
+                    "reference_embeddings": 20,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 120,
+            "end": 130,
+            "actors": [
+                {
+                    "tmdb_id": 16847,
+                    "name": "Eli Roth",
+                    "character": "SGT. Donny Donowitz",
+                    "score": 0.7403,
+                    "detections": 4,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg",
+                    "reference_images": 9,
+                    "reference_embeddings": 20,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 130,
+            "end": 140,
+            "actors": [
+                {
+                    "tmdb_id": 81125,
+                    "name": "Denis Ménochet",
+                    "character": "Perrier LaPadite",
+                    "score": 0.6442,
+                    "detections": 3,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qpCPmm12kbzMKniYF6iKmKLZCjY.jpg",
+                    "reference_images": 1,
+                    "reference_embeddings": 1,
+                    "reference_quality": "low"
+                }
+            ]
+        },
+        {
+            "start": 140,
+            "end": 150,
+            "actors": [
+                {
+                    "tmdb_id": 16847,
+                    "name": "Eli Roth",
+                    "character": "SGT. Donny Donowitz",
+                    "score": 0.81,
+                    "detections": 3,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg",
+                    "reference_images": 9,
+                    "reference_embeddings": 20,
+                    "reference_quality": "high"
+                },
+                {
+                    "tmdb_id": 81125,
+                    "name": "Denis Ménochet",
+                    "character": "Perrier LaPadite",
+                    "score": 0.6434,
+                    "detections": 3,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qpCPmm12kbzMKniYF6iKmKLZCjY.jpg",
+                    "reference_images": 1,
+                    "reference_embeddings": 1,
+                    "reference_quality": "low"
+                },
+                {
+                    "tmdb_id": 6091,
+                    "name": "August Diehl",
+                    "character": "Major Hellstrom",
+                    "score": 0.6482,
+                    "detections": 2,
+                    "image_url": "https://image.tmdb.org/t/p/w185/y8rg0tEHhqZr9Z6CExe686ytKF9.jpg",
+                    "reference_images": 7,
+                    "reference_embeddings": 7,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 150,
+            "end": 160,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.6785,
+                    "detections": 5,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                },
+                {
+                    "tmdb_id": 16847,
+                    "name": "Eli Roth",
+                    "character": "SGT. Donny Donowitz",
+                    "score": 0.7686,
+                    "detections": 4,
+                    "image_url": "https://image.tmdb.org/t/p/w185/qQTkpxzh1FlBGL1HD5hzdUMxv49.jpg",
+                    "reference_images": 9,
+                    "reference_embeddings": 20,
+                    "reference_quality": "high"
+                },
+                {
+                    "tmdb_id": 6091,
+                    "name": "August Diehl",
+                    "character": "Major Hellstrom",
+                    "score": 0.6754,
+                    "detections": 2,
+                    "image_url": "https://image.tmdb.org/t/p/w185/y8rg0tEHhqZr9Z6CExe686ytKF9.jpg",
+                    "reference_images": 7,
+                    "reference_embeddings": 7,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 160,
+            "end": 170,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.7125,
+                    "detections": 5,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 170,
+            "end": 180,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.8602,
+                    "detections": 78,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 180,
+            "end": 190,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.8133,
+                    "detections": 12,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                }
+            ]
+        },
+        {
+            "start": 190,
+            "end": 196,
+            "actors": [
+                {
+                    "tmdb_id": 27319,
+                    "name": "Christoph Waltz",
+                    "character": "COL. Hans Landa",
+                    "score": 0.6956,
+                    "detections": 3,
+                    "image_url": "https://image.tmdb.org/t/p/w185/jMvLGCVXLaBqjRLf5olyvEucZob.jpg",
+                    "reference_images": 18,
+                    "reference_embeddings": 33,
+                    "reference_quality": "high"
+                }
+            ]
+        }
+    ]
+}
